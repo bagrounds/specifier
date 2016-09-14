@@ -1,0 +1,53 @@
+{
+  "name": "serve-function-module-template",
+  "version": "0.3.4",
+  "description": "A template for a function servable with bagrounds/serve-function.",
+  "main": "serve-function-module-template.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "mocha",
+    "precoverage": "rm -rf coverage",
+    "coverage": "istanbul cover _mocha && cat ./coverage/lcov.info | coveralls",
+    "postcoverage": "codeclimate-test-reporter < coverage/lcov.info",
+    "predocument": "npm test && rm -rf docs",
+    "document": "jsdoc --destination docs -c .jsdoc.json -r",
+    "prelint": "standard-format -w",
+    "lint": "eslint --ignore-path .gitignore .",
+    "gh-pages": "gh-pages-deploy"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "type-check": "^0.3.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "codeclimate-test-reporter": "^0.3.1",
+    "coveralls": "^2.11.9",
+    "eslint": "^2.9.0",
+    "gh-pages-deploy": "^0.4.2",
+    "istanbul": "^0.4.3",
+    "jsdoc": "^3.4.0",
+    "mocha": "^2.4.5",
+    "standard-format": "^2.2.1"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "docs",
+    "prep": [
+      "document"
+    ],
+    "noprompt": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bagrounds/serve-function-module-template.git"
+  },
+  "author": "Bryan Grounds <bagrounds@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bagrounds/serve-function-module-template/issues"
+  },
+  "homepage": "https://github.com/bagrounds/serve-function-module-template#readme"
+}
