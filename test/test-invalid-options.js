@@ -10,6 +10,7 @@
   var typeCheck = require('type-check').typeCheck
   var specify = require('../specify')
 
+  // define a test specification
   var spec = {
     arg1: {
       required: true,
@@ -50,23 +51,68 @@
     }
   }
 
-  var specChecker
   describe('specify', function () {
-    it('should return a function', function () {
+    var specChecker
+    before(function () {
       specChecker = specify(spec)
-      expect(typeCheck('Function', specChecker))
     })
 
-    it('return no errors or warnings on good input', function (done) {
-      var candidate = {
-        arg1: 3,
-        arg2: 'a string'
-      }
+    describe('constructor', function () {
+      it('returns a function', function () {
+        expect(typeCheck('Function', specChecker))
+      })
+    })
 
-      specChecker(candidate, function (error, warning) {
-        expect(error).not.to.be.ok
-        expect(warning).not.to.be.ok
-        done()
+    describe('specification checker', function () {
+      it('returns no errors or warnings on good input', function (done) {
+        var candidate = {
+          arg1: 3,
+          arg2: 'a string'
+        }
+
+        specChecker(candidate, function (error, warning) {
+          expect(error).not.to.be.ok
+          expect(warning).not.to.be.ok
+          done()
+        })
+      })
+
+      it('returns an error if missing required options', function (done) {
+        var candidate = {
+          arg2: 'a string'
+        }
+
+        specChecker(candidate, function (error, warning) {
+          expect(error).to.be.ok
+          done()
+        })
+      })
+
+      it('returns a warning for extraneous options', function (done) {
+        var candidate = {
+          arg1: 3,
+          arg2: 'a string',
+          arg3: 'anything'
+        }
+
+        specChecker(candidate, function (error, warning) {
+          expect(error).not.to.be.ok
+          expect(warning).to.be.ok
+          done()
+        })
+      })
+
+      it('returns an error for options out of constraints', function (done) {
+        var candidate = {
+          arg1: -3,
+          arg2: 'a string'
+        }
+
+        specChecker(candidate, function (error, warning) {
+          expect(error).to.be.ok
+          expect(warning).not.to.be.ok
+          done()
+        })
       })
     })
   })
