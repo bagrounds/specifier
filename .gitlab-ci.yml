@@ -1,0 +1,12 @@
+{
+  "image": "node:4",
+  "stages": [
+    "test"
+  ],
+  "test": {
+    "stage": "test",
+    "script": [
+      "npm test"
+    ]
+  }
+}
