@@ -1,8 +1,8 @@
 {
-  "name": "specify",
-  "version": "0.2.0",
+  "name": "specifier",
+  "version": "0.3.2",
   "description": "",
-  "main": "specify.js",
+  "main": "specifier.js",
   "directories": {
     "test": "test"
   },
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/bagrounds/specify.git"
+    "url": "https://gitlab.com/bagrounds/specifier.git"
   },
   "author": "Bryan Grounds <bagrounds@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/bagrounds/specify/issues"
+    "url": "https://gitlab.com/bagrounds/specifier/issues"
   },
-  "homepage": "https://gitlab.com/bagrounds/specify#readme"
+  "homepage": "https://gitlab.com/bagrounds/specifier#readme"
 }

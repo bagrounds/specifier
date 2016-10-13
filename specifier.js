@@ -1,8 +1,8 @@
 /**
- * specify takes a specification object and returns a function that checks
+ * specifier takes a specification object and returns a function that checks
  * candidate objects against the specification.
  *
- * @module specify
+ * @module specifier
  */
 ;(function () {
   'use strict'
@@ -10,7 +10,7 @@
   /* imports */
 
   /* exports */
-  module.exports = specify
+  module.exports = specifier
 
   // var specification = {
   // option1: {
@@ -39,7 +39,7 @@
    * @param {Object} specification to check candidates against
    * @return {Function} that checks candidates against specification
    */
-  function specify (specification) {
+  function specifier (specification) {
     return function specificationChecker (candidate, callback) {
       var problems = {
         errors: [],
