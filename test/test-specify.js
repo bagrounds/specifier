@@ -1,5 +1,5 @@
 /**
- * Tests for specify
+ * Tests for specifier
  */
 ;(function () {
   /* global describe, it */
@@ -8,7 +8,7 @@
   /* imports */
   var expect = require('chai').expect
   var typeCheck = require('type-check').typeCheck
-  var specify = require('../specify')
+  var specifier = require('../specifier')
 
   // define a test specification
   var spec = {
@@ -51,10 +51,10 @@
     }
   }
 
-  describe('specify', function () {
+  describe('specifier', function () {
     var specChecker
     before(function () {
-      specChecker = specify(spec)
+      specChecker = specifier(spec)
     })
 
     describe('constructor', function () {

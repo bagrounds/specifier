@@ -1,4 +1,4 @@
-# specify
+# specifier
 
 [![js-standard-style][standard-img]][standard-url]
 
@@ -6,7 +6,7 @@
 ## Installation
 
 ``` bash
-  $ npm install specify
+  $ npm install specifier
 ```
 
 ## Tests
