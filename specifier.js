@@ -8,9 +8,11 @@
   'use strict'
 
   /* imports */
+  var typeConstraint = require('./lib/type-constraint')
 
   /* exports */
   module.exports = specifier
+  module.exports.type = typeConstraint
 
   // var specification = {
   // option1: {
