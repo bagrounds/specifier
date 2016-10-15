@@ -1,13 +1,16 @@
 # specifier
 
+Specify constraints for JavaScript objects.
+
 [![js-standard-style][standard-img]][standard-url]
 
-
 ## Installation
-
 ``` bash
   $ npm install specifier
 ```
+
+## Usage
+See [tests][test-url]
 
 ## Tests
 ``` bash
@@ -23,6 +26,7 @@
 [changelog-url]: CHANGELOG.md
 
 [license-url]: LICENSE
+[test-url]: test/test-specifier.js
 
 [standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [standard-url]: http://standardjs.com/
