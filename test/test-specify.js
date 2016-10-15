@@ -15,15 +15,7 @@
     arg1: {
       required: true,
       constraints: [
-        function c1 (candidate) {
-          var valid = typeCheck('Number', candidate)
-
-          if (!valid) {
-            var message = 'should be a number'
-            var error = new Error(message)
-            return error
-          }
-        },
+        specifier.type('Number'),
         function c2 (candidate) {
           var valid = candidate > 0
 
