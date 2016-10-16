@@ -12,39 +12,42 @@
 
   // define a test specification
   var spec = {
-    arg1: {
-      required: true,
-      constraints: [
-        specifier.type('Number'),
-        function c2 (candidate) {
-          var valid = candidate > 0
+    arg1: [
+      function c1 (candidate) {
+        var valid = typeCheck('Number', candidate)
 
-          if (!valid) {
-            var message = 'should be positive'
-            var error = new Error(message)
-            return error
-          }
+        if (!valid) {
+          var message = 'should be a Number'
+          var error = new Error(message)
+          return error
         }
-      ]
-    },
-    arg2: {
-      required: false,
-      constraints: [
-        function c1 (candidate) {
-          var valid = typeCheck('String', candidate)
+      },
+      function c1 (candidate) {
+        var valid = candidate > 0
 
-          if (!valid) {
-            var message = 'should be a string'
-            var error = new Error(message)
-            return error
-          }
+        if (!valid) {
+          var message = 'should be positive'
+          var error = new Error(message)
+          return error
         }
-      ]
-    }
+      }
+    ],
+    arg2: [
+      function c1 (candidate) {
+        var valid = typeCheck('String', candidate)
+
+        if (!valid) {
+          var message = 'should be a String'
+          var error = new Error(message)
+          return error
+        }
+      }
+    ]
   }
 
   describe('specifier', function () {
     var specChecker
+
     before(function () {
       specChecker = specifier(spec)
     })
@@ -56,55 +59,44 @@
     })
 
     describe('specification checker', function () {
-      it('returns no errors or warnings on good input', function (done) {
+      it('returns no errors or warnings on good input', function () {
         var candidate = {
           arg1: 3,
           arg2: 'a string'
         }
 
-        specChecker(candidate, function (error, warning) {
-          expect(error).not.to.be.ok
-          expect(warning).not.to.be.ok
-          done()
-        })
+        var error = specChecker(candidate)
+        expect(error).not.to.be.ok
       })
 
-      it('returns an error if missing required options', function (done) {
+      it('returns an error if missing options', function () {
         var candidate = {
           arg2: 'a string'
         }
 
-        specChecker(candidate, function (error, warning) {
-          expect(error).to.be.ok
-          done()
-        })
+        var error = specChecker(candidate)
+        expect(error).to.be.ok
       })
 
-      it('returns a warning for extraneous options', function (done) {
+      it('ignores extraneous options', function () {
         var candidate = {
           arg1: 3,
           arg2: 'a string',
           arg3: 'anything'
         }
 
-        specChecker(candidate, function (error, warning) {
-          expect(error).not.to.be.ok
-          expect(warning).to.be.ok
-          done()
-        })
+        var error = specChecker(candidate)
+        expect(error).not.to.be.ok
       })
 
-      it('returns an error for options out of constraints', function (done) {
+      it('returns an error for options out of constraints', function () {
         var candidate = {
           arg1: -3,
           arg2: 'a string'
         }
 
-        specChecker(candidate, function (error, warning) {
-          expect(error).to.be.ok
-          expect(warning).not.to.be.ok
-          done()
-        })
+        var error = specChecker(candidate)
+        expect(error).to.be.ok
       })
     })
   })
