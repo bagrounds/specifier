@@ -10,7 +10,7 @@ $ npm install specifier
 ```
 
 ## Usage
-``` JavaScript
+``` js
 ;(function () {
   'use strict'
 
