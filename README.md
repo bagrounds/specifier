@@ -6,28 +6,54 @@ Specify constraints for JavaScript objects.
 
 ## Installation
 ``` bash
-  $ npm install specifier
+$ npm install specifier
 ```
 
 ## Usage
-See [tests][test-url]
+``` JavaScript
+;(function () {
+  'use strict'
+
+  var specifier = require('specifier')
+
+  module.exports = myFunction
+
+  var specification = {
+    option1: [
+      constraintFunction1: function (option1Candidate) {
+        var invalid = false
+        // if option1Candidate is invalid, set invalid to true
+
+        if (invalid) {
+          var message = 'option1 should be valid!'
+          return new Error(message)
+        }
+      }
+    ]
+  }
+
+  var specificationChecker = specifier(specification)
+
+  function myFunction (options) {
+    // if all options in the spec aren't required, insert default values into options object
+    var error = specificationChecker(options)
+
+    if (error) {
+      return error
+    }
+  }
+})()
+```
 
 ## Tests
 ``` bash
-  $ npm test
+$ npm test
 ```
-
-## [Changelog][changelog-url]
 
 ## License
 [MIT][license-url]
 
-
-[changelog-url]: CHANGELOG.md
-
 [license-url]: LICENSE
-[test-url]: test/test-specifier.js
 
 [standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [standard-url]: http://standardjs.com/
-
