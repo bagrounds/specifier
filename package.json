@@ -33,6 +33,7 @@
   },
   "homepage": "https://gitlab.com/bagrounds/specifier#readme",
   "dependencies": {
-    "type-check": "^0.3.2"
+    "type-check": "^0.3.2",
+    "verror": "^1.9.0"
   }
 }

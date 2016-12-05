@@ -11,6 +11,9 @@
 ;(function () {
   'use strict'
 
+  /* imports */
+  var VError = require('verror')
+
   /* exports */
   module.exports = specifier
 
@@ -22,12 +25,17 @@
    */
   function specifier (specification) {
     return function specificationChecker (candidate) {
-      return Object.keys(specification).reduce(function (error, option) {
-        return error ||
-          specification[option].reduce(function (error, constraint) {
-            return error || constraint(candidate[option])
-          }, null)
-      }, null)
+      var keys = Object.keys(candidate)
+
+      keys.forEach(function (key) {
+        specification[key].forEach(function (assertion) {
+          try {
+            assertion(candidate[key])
+          } catch (error) {
+            throw new VError(error, 'Error for: ' + key)
+          }
+        })
+      })
     }
   }
 })()
