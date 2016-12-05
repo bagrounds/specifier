@@ -25,7 +25,7 @@
    */
   function specifier (specification) {
     return function specificationChecker (candidate) {
-      var keys = Object.keys(candidate)
+      var keys = Object.keys(specification)
 
       keys.forEach(function (key) {
         specification[key].forEach(function (assertion) {
