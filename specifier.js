@@ -13,6 +13,7 @@
 
   /* imports */
   var VError = require('verror')
+  var objectPath = require('object-path')
 
   /* exports */
   module.exports = specifier
@@ -21,21 +22,36 @@
    * @function specifier
    *
    * @param {Object} specification to check candidates against
+   * @param {Boolean} [objectPath] treat keys as object-path keys
    * @return {Function} that checks candidates against specification
    */
-  function specifier (specification) {
+  function specifier (specification, objectPath) {
+    var get = getGen(objectPath)
+
     return function specificationChecker (candidate) {
       var keys = Object.keys(specification)
 
       keys.forEach(function (key) {
         specification[key].forEach(function (assertion) {
           try {
-            assertion(candidate[key])
+            assertion(get(candidate, key))
           } catch (error) {
             throw new VError(error, 'Error for: ' + key)
           }
         })
       })
+    }
+  }
+
+  function getGen (useObjectPath) {
+    if (useObjectPath) {
+      return function get (object, key) {
+        return objectPath.get(object, key)
+      }
+    } else {
+      return function get (object, key) {
+        return object[key]
+      }
     }
   }
 })()
