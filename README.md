@@ -10,7 +10,7 @@ $ npm install specifier
 ```
 
 ## Usage
-``` js
+```js
 ;(function () {
   'use strict'
 
@@ -18,29 +18,19 @@ $ npm install specifier
 
   module.exports = myFunction
 
-  var specification = {
+  var optionsSpec = {
     option1: [
-      constraintFunction1: function (option1Candidate) {
-        var invalid = false
-        // if option1Candidate is invalid, set invalid to true
-
-        if (invalid) {
-          var message = 'option1 should be valid!'
-          return new Error(message)
-        }
+      function c1 (candidate) {
+        // if candidate doesn't satisfy constraint, throw an error
       }
     ]
   }
 
-  var specificationChecker = specifier(specification)
+  var optionsChecker = specifier(optionsSpec)
 
   function myFunction (options) {
-    // if all options in the spec aren't required, insert default values into options object
-    var error = specificationChecker(options)
-
-    if (error) {
-      return error
-    }
+    // will throw error if options.option1 fails specification constraint c1
+    optionsChecker(options)
   }
 })()
 ```
