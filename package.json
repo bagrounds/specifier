@@ -17,12 +17,10 @@
     "lint": "eslint --ignore-path .gitignore ."
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "eslint": "^3.7.1",
-    "fun-test": "^0.8.0",
+    "fun-test": "^0.8.1",
     "fun-test-runner": "^0.3.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.1.2",
     "standard-format": "^2.2.3",
     "verror": "^1.9.0"
   },
