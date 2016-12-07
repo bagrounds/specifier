@@ -8,7 +8,7 @@
   /* imports */
   var expect = require('chai').expect
   var typeCheck = require('type-check').typeCheck
-  var specifier = require('../specifier')
+  var specifier = require('../src/index')
 
   // define a test specification
   var spec = {
