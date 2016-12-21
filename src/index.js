@@ -40,6 +40,8 @@
           }
         })
       })
+
+      return candidate
     }
   }
 
